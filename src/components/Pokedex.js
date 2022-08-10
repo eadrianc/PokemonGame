@@ -10,7 +10,7 @@ export default class Pokedex extends React.Component {
     }
     
     componentDidMount() {
-        fetch("https://pokeapi.co/api/v2/pokemon" )
+        fetch("https://pokeapi.co/api/v2/pokemon/3/")
         .then(response => response.json())
         .then(user => this.setState({user: user}))
     }
@@ -18,7 +18,7 @@ export default class Pokedex extends React.Component {
     render() {
         const user = this.state.user;
     
-        return <h1>hello, {user.id}</h1>;
+        return <h1>hello, {user.name}</h1>;
     }
     
     }
