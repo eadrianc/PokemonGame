@@ -18,7 +18,7 @@ export default class Pokedex extends React.Component {
     render() {
         const user = this.state.user;
     
-        return <h1>hello, {user.name}</h1>;
+        return <h1>hello, {user.results}</h1>;
     }
     
     }

@@ -1,10 +1,12 @@
 .navbar {
-background-color:  #ef5350 !important;
+
 }
 
 .navbar a {
-    color: black;
+    color: rgb(184, 34, 34);
     text-decoration: none;
+    position: relative;
+    left: 15px;
 }
 
 .App {
