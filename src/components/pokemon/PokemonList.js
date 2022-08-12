@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 import PokemonCard from './PokemonCard';
@@ -21,7 +21,11 @@ export default class PokemonList extends React.Component {
             {this.state.pokemon ? (
                 <div className='row'>
                     {this.state.pokemon.map(pokemon => (
-                        <PokemonCard />
+                        <PokemonCard 
+                        key={pokemon.name}
+                        name={pokemon.name}
+                        url={pokemon.url}
+                        />
                     ))}
                 </div>
             ) : (  
