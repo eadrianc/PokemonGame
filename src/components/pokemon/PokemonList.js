@@ -6,9 +6,11 @@ import PokemonCard from './PokemonCard';
 
 export default class PokemonList extends React.Component {
     state = {
-        url: 'https://pokeapi.co/api/v2/pokemon/', 
-        pokemon: null
+        url: 'https://pokeapi.co/api/v2/pokemon/ ', 
+        pokemon: null,
+        
     };
+
     
       async componentDidMount() {
         const res = await axios.get(this.state.url);
