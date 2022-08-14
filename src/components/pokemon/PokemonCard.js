@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Sprite =styled.img`
-width: 70px;
-height: 130px;
+width: 100px;
+height: 150px;
 
 `;
 
