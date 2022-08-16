@@ -1,5 +1,4 @@
 
-
 .navbar a {
     color: rgb(184, 34, 34);
     text-decoration: none;
@@ -15,4 +14,57 @@
     padding-top: 4rem;
     min-height: 100vh;
 }
+
+.style{
+    width: 650px;
+    display: flex;
+    position: relative;
+    left: 465px;
+    top: 10px;
+    
+    
+}
+
+.lista .card {
+  width: 400px;
+  height: 390px;
+  padding: 1px;
+
+}
+
+.style .col-md-3 {
+position: relative;
+left: 240px;
+
+}
+
+.style .porcentagem {
+    position:relative;
+    left: 150px;
+    }
+
+  .style  .nome-tipo {
+    position:relative;
+    left: 270px;
+  }
+
+  .style .tipo {
+    position:relative;
+    left: 100px;
+  }
+
+  .col .lista {
+    position: absolute;
+    top: 75px;
+    left: 130px;
+    
+  }
+
+  .col .profile {
+    position: relative;
+    top: 25px;
+  }
+
+
+
 

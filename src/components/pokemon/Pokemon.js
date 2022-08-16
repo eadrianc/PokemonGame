@@ -1,5 +1,24 @@
 import React from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
+
+import PokemonCard from './PokemonCard';
+
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+text-decoration: none;
+color: black;
+&:focus,
+&:hover,
+&:visited,
+&:link,
+&:active {
+    text-decoration: none;
+}
+`;
+
+
 
 const TYPE_COLORS = {
     bug: 'B1C12E',
@@ -27,6 +46,8 @@ const TYPE_COLORS = {
 
 export default class Pokemon extends React.Component {
     state = {
+        url: 'https://pokeapi.co/api/v2/pokemon/', 
+        pokemon: null,
         name: '',
         pokemonIndex: '',
         imageUrl: '',
@@ -53,6 +74,10 @@ export default class Pokemon extends React.Component {
     };
 
     async componentDidMount(){
+
+        const res = await axios.get(this.state.url);
+        this.setState({pokemon: res.data['results']});
+
         const {pokemonIndex} = this.props.match.params;
 
         //Urls Para Informacion pokemon
@@ -65,7 +90,7 @@ export default class Pokemon extends React.Component {
         const name = pokemonRes.data.name;
         const imageUrl = pokemonRes.data.sprites.front_default;
 
-        let {hp, attack, defense, speed, specialAttack, specialDefense} = '';
+        let {hp, attack,  defense, speed, specialAttack, specialDefense} = '';
 
         pokemonRes.data.stats.map(stat => {
             switch (stat.stat.name){
@@ -178,18 +203,45 @@ export default class Pokemon extends React.Component {
     render() {
         return (
         <div className="col">
-            <div className="card">
+            <div className='lista'>
+            {this.state.pokemon ? (
+                <div className='row'>
+                    {this.state.pokemon.map(pokemon => (
+                        <PokemonCard 
+                        key={pokemon.name}
+                        name={pokemon.name}
+                        url={pokemon.url}
+                        />
+                    ))}
+                </div>
+            ) : (  
+                <h1> Carregando Pokemon</h1>
+            )}
+                </div>
+            <div className="">
+            
                 <div className="card-header">
-                    <div className="row">
-                        <div className="col-5">
-                            <h5>{this.state.pokemonIndex}</h5>
-                        </div>
-                        <div className="col-7">
-                            <div className="float-right">
+                    <div className="card-body">
+                    <div className="style card"> 
+                    <div className="col-md-3 card">
+                        <img 
+                        src={this.state.imageUrl}
+                        className="card-img-top rounded mx-auto mt-2"
+                        />
+                    </div>
+                    <div className="col-md-9">
+                        <h4 className="mx-auto nome-tipo">
+                            {this.state.name .toLowerCase()
+                            .split('-')
+                            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+                            .join('')}
+                        </h4>
+                        <div className="col-7 tipo">
+                            <div className="float-center tipo">
                                 {this.state.types.map(type => (
                                 <span 
                                 key={type}
-                                 className="badge badge-primary badge-pill mr-1"
+                                 className="badge badge-primary badge-pill mr-1 tipo"
                                  style={{backgroundColor: `#${TYPE_COLORS[type]}`,
                                  color: 'green'
                                 
@@ -205,25 +257,9 @@ export default class Pokemon extends React.Component {
                                   ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="card-body">
-                    <div className="row align-items-center"> 
-                    <div className="col-md-3" >
-                        <img 
-                        src={this.state.imageUrl}
-                        className="card-img-top rounded mx-auto mt-2"
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <h4 className="mx-auto">
-                            {this.state.name .toLowerCase()
-                            .split('-')
-                            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                            .join('')}
-                        </h4>
                         <div className="row align-items-center">
-                            <div className="col-12 col-md-3">HP</div>
-                            <div className="col-12 col-md-9">
+                            <div className="col-12 col-md-3 porcentagem" >HP</div>
+                            <div className="col-12 col-md-9 porcentagem">
                                 <div className="progress">
                                     <div 
                                     className="progress-bar" 
@@ -241,8 +277,8 @@ export default class Pokemon extends React.Component {
                             </div>
                         </div>
                         <div className="row align-items-center">
-                            <div className="col-12 col-md-3">Attack</div>
-                            <div className="col-12 col-md-9">
+                            <div className="col-12 col-md-3 porcentagem">Attack</div>
+                            <div className="col-12 col-md-9 porcentagem">
                                 <div className="progress">
                                     <div 
                                     className="progress-bar" 
@@ -260,8 +296,8 @@ export default class Pokemon extends React.Component {
                             </div>
                         </div>
                         <div className="row align-items-center">
-                            <div className="col-12 col-md-3">Defense</div>
-                            <div className="col-12 col-md-9">
+                            <div className="col-12 col-md-3 porcentagem" >Defense</div>
+                            <div className="col-12 col-md-9 porcentagem">
                                 <div className="progress">
                                     <div 
                                     className="progress-bar" 
@@ -279,8 +315,8 @@ export default class Pokemon extends React.Component {
                             </div>
                         </div>
                         <div className="row align-items-center">
-                            <div className="col-12 col-md-3">Speed</div>
-                            <div className="col-12 col-md-9">
+                            <div className="col-12 col-md-3 porcentagem">Speed</div>
+                            <div className="col-12 col-md-9 porcentagem">
                                 <div className="progress">
                                     <div 
                                     className="progress-bar" 
@@ -306,7 +342,7 @@ export default class Pokemon extends React.Component {
                 </div>
                 </div>
                 <h1/>
-                <div className="card-body">
+                <div className="card-body card profile">
                     <h5 className="card-title text-center">profile</h5>
                     <div className="row">
                         <div className="col-md-6">
