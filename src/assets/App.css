@@ -16,10 +16,11 @@
 }
 
 .style{
-    width: 650px;
+    width: 700px;
+   
     display: flex;
     position: relative;
-    left: 465px;
+    left: 190px;
     top: 10px;
     
     
@@ -62,7 +63,7 @@ left: 240px;
 
   .col .profile {
     position: relative;
-    top: 25px;
+    top: 100px;
   }
 
 

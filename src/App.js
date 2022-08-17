@@ -6,6 +6,7 @@ import './assets/App.css';
 
 
 import NavBar from "./components/layout/NavBar";
+import Dashboard from "./components/layout/Dashboard";
 import Pokemon from "./components/pokemon/Pokemon";
 
 import backgroundImage from "./pattern.png";
@@ -18,6 +19,7 @@ class App extends React.Component{
         <NavBar />
         <div className="container">
           <Switch>
+          <Route exact path="/" component={Dashboard} />
           <Route exact path="/pokemon/:pokemonIndex" component={Pokemon}/>
           </Switch>
         </div>

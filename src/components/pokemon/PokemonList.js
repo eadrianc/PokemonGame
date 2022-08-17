@@ -6,9 +6,9 @@ import PokemonCard from './PokemonCard';
 
 export default class PokemonList extends React.Component {
     state = {
-        url: 'https://pokeapi.co/api/v2/pokemon/', 
+        url: 'https://pokeapi.co/api/v2/pokemon/ ', 
         pokemon: null,
-       
+        
     };
 
     
