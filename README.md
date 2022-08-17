@@ -25,5 +25,5 @@ Instalação/Execução
 
 1 No terminal de visual studio code executar; npm install
 2 Executar: npm start
-3 Abrir site; http://localhost:3003/#/pokemon/1
+3 Abrir site; http://localhost:3000/#/
 
